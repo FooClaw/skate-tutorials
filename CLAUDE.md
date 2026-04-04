@@ -17,7 +17,9 @@ skate-tutorials/
   main.py            # Point d'entree
   ollie/             # Repertoire dedie au Ollie
     __init__.py
-    ollie.py         # Fiche tutoriel du Ollie
+    ollie.py         # Fiche tutoriel (description, etapes, conseils)
+    progression.py   # 4 phases d'apprentissage graduelles
+    exercices.py     # Exercices pratiques cibles
   pyproject.toml
   uv.lock
 ```
@@ -25,16 +27,17 @@ skate-tutorials/
 ## Conventions
 
 - Un repertoire par trick a la racine du projet
-- Chaque fiche contient : NOM, DIFFICULTE, PREREQUIS, DESCRIPTION, POSITION_PIEDS, ETAPES, ERREURS_COURANTES, CONSEILS
-- Chaque module expose une fonction `afficher_fiche()` pour afficher le tutoriel
+- Chaque repertoire de trick contient : ollie.py (fiche), progression.py (phases), exercices.py (pratique)
+- Chaque module expose une fonction `afficher_*()` pour afficher son contenu
 - Pas d'accents dans les chaines Python (compatibilite terminal)
 - Langue : francais
 
 ## Commandes utiles
 
 ```bash
-uv run python main.py           # Afficher la fiche du trick actuel
-uv run python -m ollie.ollie    # Afficher la fiche Ollie directement
+uv run python main.py              # Afficher la fiche Ollie (par defaut)
+uv run python main.py progression  # Afficher les 4 phases d'apprentissage
+uv run python main.py exercices    # Afficher les exercices pratiques
 ```
 
 ## Travail en cours
