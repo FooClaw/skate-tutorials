@@ -1,0 +1,7 @@
+[project]
+name = "skate-tutorials"
+version = "0.1.0"
+description = "Fiches tutoriels pour apprendre les tricks de skateboard"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
