@@ -1,4 +1,4 @@
-name: Deploy GitHub Pages
+name: Build & Deploy
 
 on:
   push:
@@ -7,17 +7,16 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  deployments: write
+  statuses: write
 
 concurrency:
   group: "pages"
   cancel-in-progress: true
 
 jobs:
-  generate-and-deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -51,7 +50,51 @@ jobs:
           sed -i 's|\.\./ollie/assets/|ollie-assets/|g' _site/*.html
           sed -i 's|\.\./manual/assets/|manual-assets/|g' _site/*.html
 
-      - name: Upload artifact
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-preview
+          path: _site
+
+  deploy-netlify:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download site artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site-preview
+          path: _site
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3
+        with:
+          publish-dir: _site
+          production-deploy: ${{ github.ref == 'refs/heads/main' }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy from ${{ github.ref_name }} @ ${{ github.sha }}"
+          enable-commit-comment: false
+          enable-commit-status: false
+          enable-github-deployment: false
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+  deploy-pages:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Download site artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site-preview
+          path: _site
+
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site

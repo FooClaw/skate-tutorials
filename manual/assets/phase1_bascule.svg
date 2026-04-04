@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="400" height="300" viewBox="0 0 400 300">
+<defs>
+<marker markerWidth="8.0" markerHeight="8.0" viewBox="-0.8 -0.5 1.0 1.0" orient="auto" id="d0">
+<path d="M-0.8,-0.5 L0,0 L-0.8,0.5" fill="#e07020" />
+</marker>
+</defs>
+<rect x="0" y="0" width="400" height="300" fill="#faf8f5" />
+<rect x="0" y="240" width="400" height="60" fill="#8B7355" opacity="0.15" />
+<path d="M0,240 L400,240" stroke="#8B7355" stroke-width="2" />
+<g transform="translate(200,222) rotate(-8)">
+<path d="M -60 0 Q -68 -12, -55 -14 L 55 -4 Q 68 -12, 60 0 Z" fill="#2d2d2d" stroke="#2d2d2d" stroke-width="1" />
+<circle cx="-40" cy="10" r="9" fill="#555555" />
+<circle cx="-40" cy="10" r="4" fill="#777" />
+<circle cx="40" cy="10" r="9" fill="#555555" />
+<circle cx="40" cy="10" r="4" fill="#777" />
+</g>
+<path d="M193,205 L200,181.0" stroke="#e07020" stroke-width="4" stroke-linecap="round" />
+<path d="M200,181.0 L205,161.0" stroke="#e07020" stroke-width="4" stroke-linecap="round" />
+<path d="M217,205 L210,181.0" stroke="#e07020" stroke-width="4" stroke-linecap="round" />
+<path d="M210,181.0 L205,161.0" stroke="#e07020" stroke-width="4" stroke-linecap="round" />
+<path d="M205,161.0 L205,137.0" stroke="#e07020" stroke-width="4" stroke-linecap="round" />
+<path d="M205,137.0 L185,152.0" stroke="#e07020" stroke-width="3" stroke-linecap="round" />
+<path d="M205,137.0 L225,152.0" stroke="#e07020" stroke-width="3" stroke-linecap="round" />
+<circle cx="205" cy="125" r="10" fill="#e07020" />
+<path d="M220,140 L180,140" stroke="#e07020" stroke-width="2" marker-end="url(#d0)" />
+<text x="205.0" y="135.0" font-size="12" fill="#e07020" font-family="sans-serif" font-weight="bold">Poids</text>
+<path d="M235,210 L235,235" stroke="#27ae60" stroke-width="1" stroke-dasharray="4" />
+<text x="245" y="225" font-size="10" fill="#27ae60" font-family="sans-serif" font-weight="bold">leve</text>
+<text x="200" y="25" font-size="14" fill="#333333" font-family="sans-serif" text-anchor="middle" font-weight="bold">Phase 1 : Bascule</text>
+<text x="200" y="50" font-size="14" fill="#333333" font-family="sans-serif" text-anchor="middle" font-weight="bold">Deplace le poids vers l'arriere</text>
+</svg>
