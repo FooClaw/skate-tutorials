@@ -8,7 +8,8 @@ Fiches tutoriels pour apprendre les tricks de skateboard, structurees en modules
 
 - Python 3.11+
 - Gestion de projet avec `uv`
-- Pas de dependances externes pour l'instant
+- `drawsvg` pour la generation des illustrations SVG
+- GitHub Pages (dossier `docs/`) pour le site statique
 
 ## Structure
 
@@ -20,6 +21,10 @@ skate-tutorials/
     ollie.py         # Fiche tutoriel (description, etapes, conseils)
     progression.py   # 4 phases d'apprentissage graduelles
     exercices.py     # Exercices pratiques cibles
+    illustrations.py # Generation des SVGs
+    assets/          # SVGs generes (position pieds, 4 phases)
+  docs/              # GitHub Pages
+    index.html       # Page tutoriel Ollie avec illustrations
   pyproject.toml
   uv.lock
 ```
@@ -38,11 +43,14 @@ skate-tutorials/
 uv run python main.py              # Afficher la fiche Ollie (par defaut)
 uv run python main.py progression  # Afficher les 4 phases d'apprentissage
 uv run python main.py exercices    # Afficher les exercices pratiques
+uv run python -m ollie.illustrations  # Regenerer les SVGs dans ollie/assets/
 ```
 
 ## Travail en cours
 
 - [x] Init projet avec uv
-- [x] Structure tricks/ avec premiere fiche (Ollie)
+- [x] Structure ollie/ avec fiche, progression, exercices
+- [x] Illustrations SVG (position pieds + 4 phases du ollie)
+- [x] GitHub Pages (docs/index.html)
 - [ ] Ajouter d'autres tricks (kickflip, heelflip, shuvit...)
 - [ ] Systeme de progression / ordre d'apprentissage

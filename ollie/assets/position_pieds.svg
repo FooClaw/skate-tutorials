@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="400" height="250" viewBox="0 0 400 250">
+<defs>
+</defs>
+<rect x="0" y="0" width="400" height="250" fill="#faf8f5" />
+<path d="M 70 125 Q 60 103, 85 100 L 315 100 Q 340 103, 330 125 Q 340 147, 315 150 L 85 150 Q 60 147, 70 125 Z" fill="#e8e0d4" stroke="#2d2d2d" stroke-width="2" />
+<circle cx="120" cy="110" r="3" fill="#2d2d2d" />
+<circle cx="120" cy="140" r="3" fill="#2d2d2d" />
+<circle cx="280" cy="110" r="3" fill="#2d2d2d" />
+<circle cx="280" cy="140" r="3" fill="#2d2d2d" />
+<ellipse cx="105" cy="125" rx="22" ry="14" fill="#c0392b" opacity="0.7" />
+<text x="105" y="85" font-size="14" fill="#333333" font-family="sans-serif" text-anchor="middle" font-weight="bold">Pied arriere</text>
+<text x="105" y="100" font-size="14" fill="#333333" font-family="sans-serif" text-anchor="middle" font-weight="bold">(sur le tail)</text>
+<ellipse cx="220" cy="125" rx="22" ry="14" fill="#2980b9" opacity="0.7" />
+<text x="220" y="85" font-size="14" fill="#333333" font-family="sans-serif" text-anchor="middle" font-weight="bold">Pied avant</text>
+<text x="220" y="100" font-size="14" fill="#333333" font-family="sans-serif" text-anchor="middle" font-weight="bold">(milieu / vis avant)</text>
+<text x="70" y="170" font-size="14" fill="#333333" font-family="sans-serif" text-anchor="middle" font-weight="bold">TAIL</text>
+<text x="330" y="170" font-size="14" fill="#333333" font-family="sans-serif" text-anchor="middle" font-weight="bold">NOSE</text>
+</svg>
