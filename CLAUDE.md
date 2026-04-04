@@ -25,6 +25,8 @@ skate-tutorials/
     assets/          # SVGs generes (position pieds, 4 phases)
   docs/              # GitHub Pages
     index.html       # Page tutoriel Ollie avec illustrations
+  .github/workflows/
+    deploy-pages.yml # CI : genere les SVGs et deploie sur GitHub Pages
   pyproject.toml
   uv.lock
 ```
@@ -52,5 +54,6 @@ uv run python -m ollie.illustrations  # Regenerer les SVGs dans ollie/assets/
 - [x] Structure ollie/ avec fiche, progression, exercices
 - [x] Illustrations SVG (position pieds + 4 phases du ollie)
 - [x] GitHub Pages (docs/index.html)
+- [x] GitHub Actions : deploy-pages.yml (genere SVGs + deploie sur push)
 - [ ] Ajouter d'autres tricks (kickflip, heelflip, shuvit...)
 - [ ] Systeme de progression / ordre d'apprentissage
