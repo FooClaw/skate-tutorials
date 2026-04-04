@@ -32,6 +32,10 @@ jobs:
         if: hashFiles('manual/illustrations.py') != ''
         run: uv run python -m manual.illustrations
 
+      - name: Generate Pop Shuvit SVG illustrations
+        if: hashFiles('pop_shuvit/illustrations.py') != ''
+        run: uv run python -m pop_shuvit.illustrations
+
       - name: Prepare site
         run: |
           mkdir -p _site
@@ -44,11 +48,16 @@ jobs:
             mkdir -p _site/manual-assets
             cp -r manual/assets/* _site/manual-assets/
           fi
+          if [ -d pop_shuvit/assets ]; then
+            mkdir -p _site/pop_shuvit-assets
+            cp -r pop_shuvit/assets/* _site/pop_shuvit-assets/
+          fi
 
       - name: Fix asset paths in HTML
         run: |
           sed -i 's|\.\./ollie/assets/|ollie-assets/|g' _site/*.html
           sed -i 's|\.\./manual/assets/|manual-assets/|g' _site/*.html
+          sed -i 's|\.\./pop_shuvit/assets/|pop_shuvit-assets/|g' _site/*.html
 
       - name: Upload site artifact
         uses: actions/upload-artifact@v4

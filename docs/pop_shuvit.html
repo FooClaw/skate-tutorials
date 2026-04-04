@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skate Tutorials - Le Pop Shuvit</title>
+    <style>
+        :root {
+            --orange: #e07020;
+            --dark: #2d2d2d;
+            --bg: #faf8f5;
+            --card-bg: #ffffff;
+            --border: #e0dbd4;
+            --text: #333333;
+            --text-light: #666666;
+            --rouge: #c0392b;
+            --bleu: #2980b9;
+            --vert: #27ae60;
+            --violet: #8e44ad;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--dark);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        header p { font-size: 1.1rem; opacity: 0.85; }
+
+        .badge {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        nav {
+            background: var(--dark);
+            padding: 0 2rem 1rem;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            opacity: 0.7;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover { opacity: 1; }
+
+        main { max-width: 900px; margin: 0 auto; padding: 2rem 1rem; }
+        section { margin-bottom: 3rem; }
+
+        h2 {
+            font-size: 1.6rem;
+            color: var(--dark);
+            border-bottom: 3px solid var(--orange);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 { font-size: 1.2rem; color: var(--orange); margin: 1.5rem 0 0.75rem; }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .card h4 { color: var(--dark); margin-bottom: 0.5rem; }
+        .card p { color: var(--text-light); margin-bottom: 0.5rem; }
+
+        .illustration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .illustration-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .illustration-card img { width: 100%; height: auto; display: block; }
+
+        .steps-list { list-style: none; counter-reset: step; }
+
+        .steps-list li {
+            counter-increment: step;
+            padding: 0.75rem 0 0.75rem 3rem;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .steps-list li:last-child { border-bottom: none; }
+
+        .steps-list li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            width: 2rem;
+            height: 2rem;
+            background: var(--orange);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .pieds-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+        .pied-card { padding: 1rem; border-radius: 8px; color: white; }
+        .pied-card.arriere { background: var(--rouge); }
+        .pied-card.avant { background: var(--bleu); }
+        .pied-card h4 { margin-bottom: 0.25rem; }
+
+        .erreur {
+            background: #fdecea;
+            border-left: 4px solid var(--rouge);
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .conseil {
+            background: #e8f5e9;
+            border-left: 4px solid var(--vert);
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .phase-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+
+        .phase-number {
+            background: var(--orange);
+            color: white;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .phase-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .sous-etape {
+            background: #f5f3f0;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .sous-etape h5 { color: var(--dark); margin-bottom: 0.25rem; }
+        .sous-etape .critere { font-size: 0.85rem; color: var(--vert); font-weight: 600; }
+
+        .exercice-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .exercice-card h4 { color: var(--dark); }
+
+        .exercice-card .phase-tag {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            padding: 0.1rem 0.5rem;
+            border-radius: 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .exercice-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .exercice-meta span strong { color: var(--text); }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .pieds-grid { grid-template-columns: 1fr; }
+            .illustration-grid { grid-template-columns: 1fr; }
+            .phase-meta { flex-direction: column; gap: 0.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Le Pop Shuvit</h1>
+    <p>Faire tourner la planche de 180 sous tes pieds</p>
+    <span class="badge">Debutant-Intermediaire</span>
+</header>
+<nav>
+    <a href="index.html">&larr; Accueil</a>
+    <span style="color:white;opacity:0.3;margin:0 1rem;">|</span>
+    <a href="ollie.html">Le Ollie</a>
+    <span style="color:white;opacity:0.3;margin:0 1rem;">|</span>
+    <a href="manual.html">Le Manual</a>
+</nav>
+
+<main>
+
+    <section>
+        <h2>Description</h2>
+        <p>Le pop shuvit consiste a faire tourner la planche de 180 degres en backside grace a une impulsion du pied arriere (le scoop), tout en restant face a la direction de deplacement. C'est l'un des premiers tricks de rotation de planche a apprendre apres le ollie.</p>
+        <h3>Prerequis</h3>
+        <ul>
+            <li>Maitriser le ollie basique</li>
+            <li>Etre a l'aise en roulant a vitesse moderee</li>
+            <li>Savoir rattraper la planche avec les pieds apres un saut</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Position des pieds</h2>
+        <div class="illustration-card" style="max-width:500px;margin:0 auto 1.5rem;">
+            <img src="../pop_shuvit/assets/position_pieds.svg" alt="Position des pieds pour le pop shuvit">
+        </div>
+        <div class="pieds-grid">
+            <div class="pied-card arriere">
+                <h4>Pied arriere</h4>
+                <p>Sur le tail, orteils dans le coin arriere cote talons (poche du tail)</p>
+            </div>
+            <div class="pied-card avant">
+                <h4>Pied avant</h4>
+                <p>Au milieu de la planche, detendu, pret a se lever</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Les 4 phases du Pop Shuvit</h2>
+        <div class="illustration-grid">
+            <div class="illustration-card">
+                <img src="../pop_shuvit/assets/phase1_scoop.svg" alt="Phase 1 : Le Scoop">
+            </div>
+            <div class="illustration-card">
+                <img src="../pop_shuvit/assets/phase2_rotation.svg" alt="Phase 2 : Rotation">
+            </div>
+            <div class="illustration-card">
+                <img src="../pop_shuvit/assets/phase3_catch.svg" alt="Phase 3 : Catch">
+            </div>
+            <div class="illustration-card">
+                <img src="../pop_shuvit/assets/phase4_reception.svg" alt="Phase 4 : Reception">
+            </div>
+        </div>
+
+        <h3>Etapes detaillees</h3>
+        <ol class="steps-list">
+            <li>Roule a vitesse moderee, genoux flechis, poids centre.</li>
+            <li>Place ton pied arriere dans la poche du tail (coin arriere cote talons).</li>
+            <li>Pop le tail en poussant vers l'arriere avec la cheville (scoop). C'est un mouvement de grattage en arriere.</li>
+            <li>Leve le pied avant pour laisser la planche tourner librement sous toi.</li>
+            <li>Reste au-dessus de la planche, le corps ne tourne pas. Garde les epaules droites.</li>
+            <li>Repere la planche quand elle a fait 180, rattrape-la avec les pieds sur les vis.</li>
+            <li>Atterris genoux flechis, poids centre, et roule.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>Progression d'apprentissage</h2>
+
+        <div class="card">
+            <div class="phase-header">
+                <div class="phase-number">1</div>
+                <div><h4>Le Shuvit (sans pop)</h4><p>Comprendre la rotation sans hauteur</p></div>
+            </div>
+            <div class="phase-meta">
+                <span><strong>Lieu :</strong> Surface plane, a l'arret ou sur l'herbe</span>
+                <span><strong>Duree :</strong> 2 a 4 sessions</span>
+            </div>
+            <div class="sous-etape"><h5>Scoop a l'arret</h5><p>A l'arret, pousse le tail en arriere pour faire tourner la planche.</p><p class="critere">10 shuvits rattrapes d'affilee</p></div>
+            <div class="sous-etape"><h5>Shuvit en roulant</h5><p>Roule tres lentement et fais un shuvit.</p><p class="critere">5 reussites d'affilee</p></div>
+            <div class="sous-etape"><h5>Corps droit</h5><p>Verifie que tes epaules restent face a la direction.</p><p class="critere">5 shuvits avec corps parfaitement droit</p></div>
+        </div>
+
+        <div class="card">
+            <div class="phase-header">
+                <div class="phase-number">2</div>
+                <div><h4>Ajouter le pop</h4><p>Combiner pop et scoop pour un vrai pop shuvit</p></div>
+            </div>
+            <div class="phase-meta">
+                <span><strong>Lieu :</strong> Surface plane et lisse</span>
+                <span><strong>Duree :</strong> 3 a 7 sessions</span>
+            </div>
+            <div class="sous-etape"><h5>Pop shuvit a l'arret</h5><p>Combine le pop vers le bas et le scoop vers l'arriere.</p><p class="critere">10 pop shuvits a l'arret</p></div>
+            <div class="sous-etape"><h5>Pop shuvit en roulant lentement</h5><p>Roule a faible vitesse et fais un pop shuvit complet.</p><p class="critere">5 reussites d'affilee</p></div>
+            <div class="sous-etape"><h5>Pop shuvit a vitesse normale</h5><p>Augmente la vitesse progressivement.</p><p class="critere">5 reussites d'affilee</p></div>
+        </div>
+
+        <div class="card">
+            <div class="phase-header">
+                <div class="phase-number">3</div>
+                <div><h4>Hauteur et style</h4><p>Pop shuvit plus haut et plus propre</p></div>
+            </div>
+            <div class="phase-meta">
+                <span><strong>Lieu :</strong> Surface plane, skatepark</span>
+                <span><strong>Duree :</strong> 5 a 10 sessions</span>
+            </div>
+            <div class="sous-etape"><h5>Pop shuvit avec hauteur</h5><p>Force le pop pour faire monter la planche plus haut.</p><p class="critere">5 pop shuvits hauts d'affilee</p></div>
+            <div class="sous-etape"><h5>Rattrape propre</h5><p>Rattrape la planche en l'air, pas attendre qu'elle retombe.</p><p class="critere">5 catches propres d'affilee</p></div>
+            <div class="sous-etape"><h5>Par-dessus un obstacle</h5><p>Pop shuvit par-dessus un petit obstacle.</p><p class="critere">3 reussites d'affilee</p></div>
+        </div>
+
+        <div class="card">
+            <div class="phase-header">
+                <div class="phase-number">4</div>
+                <div><h4>Variations et combos</h4><p>Integrer le pop shuvit dans des enchainements</p></div>
+            </div>
+            <div class="phase-meta">
+                <span><strong>Lieu :</strong> Skatepark, spot de rue</span>
+                <span><strong>Duree :</strong> Progression continue</span>
+            </div>
+            <div class="sous-etape"><h5>Frontside pop shuvit</h5><p>Inverse la rotation : la planche tourne vers l'avant.</p><p class="critere">3 reussites d'affilee</p></div>
+            <div class="sous-etape"><h5>Manual -> Pop shuvit out</h5><p>Sors d'un manual avec un pop shuvit.</p><p class="critere">3 reussites d'affilee</p></div>
+            <div class="sous-etape"><h5>Pop shuvit en descente</h5><p>Pop shuvit en descendant une marche ou un ledge.</p><p class="critere">3 reussites d'affilee</p></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Exercices pratiques</h2>
+        <div class="exercice-card"><h4>Le scoop fantome <span class="phase-tag">Phase 1</span></h4><p>Sur l'herbe, sans monter sur la planche, entraine le mouvement de scoop avec le pied.</p><div class="exercice-meta"><span><strong>Cible :</strong> Mouvement du scoop</span><span><strong>Duree :</strong> 3 minutes</span></div></div>
+        <div class="exercice-card"><h4>Le shuvit tapis <span class="phase-tag">Phase 1</span></h4><p>Sur un tapis ou l'herbe, fais un shuvit complet sans rouler.</p><div class="exercice-meta"><span><strong>Cible :</strong> Shuvit complet sans rouler</span><span><strong>Duree :</strong> 5 minutes</span></div></div>
+        <div class="exercice-card"><h4>Le pop and catch <span class="phase-tag">Phase 2</span></h4><p>A l'arret, concentre-toi uniquement sur rattraper la planche avec le pied avant.</p><div class="exercice-meta"><span><strong>Cible :</strong> Combiner pop et scoop</span><span><strong>Duree :</strong> 10 minutes</span></div></div>
+        <div class="exercice-card"><h4>Le couloir <span class="phase-tag">Phase 2</span></h4><p>Trace deux lignes paralleles a 50 cm. Fais un pop shuvit et atterris entre les lignes.</p><div class="exercice-meta"><span><strong>Cible :</strong> Pop shuvit en ligne droite</span><span><strong>Duree :</strong> 10 minutes</span></div></div>
+        <div class="exercice-card"><h4>Le pop shuvit monte <span class="phase-tag">Phase 3</span></h4><p>Monte les genoux au maximum pour donner de la place a la planche.</p><div class="exercice-meta"><span><strong>Cible :</strong> Hauteur du pop shuvit</span><span><strong>Duree :</strong> 10 minutes</span></div></div>
+        <div class="exercice-card"><h4>Le combo manual-shuvit <span class="phase-tag">Phase 4</span></h4><p>Manual de 2-3 metres puis sors avec un pop shuvit.</p><div class="exercice-meta"><span><strong>Cible :</strong> Enchainement avec d'autres tricks</span><span><strong>Duree :</strong> 15 minutes</span></div></div>
+    </section>
+
+    <section>
+        <h2>Erreurs courantes</h2>
+        <div class="erreur">Tourner le corps avec la planche &rarr; garde les epaules face a la direction.</div>
+        <div class="erreur">Pop sans scoop &rarr; la planche ne tourne pas, c'est le mouvement en arriere qui cree la rotation.</div>
+        <div class="erreur">Pied avant qui bloque la rotation &rarr; leve-le suffisamment.</div>
+        <div class="erreur">Ne pas regarder la planche &rarr; suis-la du regard pour la rattraper.</div>
+        <div class="erreur">Atterrir decentre &rarr; reste bien au-dessus de la planche.</div>
+    </section>
+
+    <section>
+        <h2>Conseils</h2>
+        <div class="conseil">Le scoop vient de la cheville, pas de toute la jambe.</div>
+        <div class="conseil">Commence a l'arret ou tres lentement pour comprendre le scoop.</div>
+        <div class="conseil">Pense a gratter le tail vers l'arriere, pas juste a le frapper vers le bas.</div>
+        <div class="conseil">Le pied avant ne fait presque rien : il se leve, c'est tout.</div>
+        <div class="conseil">Essaie d'abord sans pop (shuvit simple) pour sentir la rotation.</div>
+        <div class="conseil">Filme-toi de cote pour verifier que ton corps reste droit.</div>
+    </section>
+
+</main>
+
+<footer>
+    <p>Skate Tutorials &mdash; Apprendre le skate, trick par trick.</p>
+</footer>
+
+</body>
+</html>
