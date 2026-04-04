@@ -34,7 +34,7 @@
 - [ ] Bluntslide
 
 ## Manuals
-- [ ] Manual
+- [x] Manual
 - [ ] Nose Manual
 
 ## Transitions / Rampe
