@@ -15,16 +15,16 @@ Fiches tutoriels pour apprendre les tricks de skateboard, structurees en modules
 ```
 skate-tutorials/
   main.py            # Point d'entree
-  tricks/            # Un fichier par trick
+  ollie/             # Repertoire dedie au Ollie
     __init__.py
-    ollie.py         # Premier trick : le Ollie
+    ollie.py         # Fiche tutoriel du Ollie
   pyproject.toml
   uv.lock
 ```
 
 ## Conventions
 
-- Un fichier Python par trick dans `tricks/`
+- Un repertoire par trick a la racine du projet
 - Chaque fiche contient : NOM, DIFFICULTE, PREREQUIS, DESCRIPTION, POSITION_PIEDS, ETAPES, ERREURS_COURANTES, CONSEILS
 - Chaque module expose une fonction `afficher_fiche()` pour afficher le tutoriel
 - Pas d'accents dans les chaines Python (compatibilite terminal)
@@ -34,7 +34,7 @@ skate-tutorials/
 
 ```bash
 uv run python main.py           # Afficher la fiche du trick actuel
-uv run python -m tricks.ollie   # Afficher la fiche Ollie directement
+uv run python -m ollie.ollie    # Afficher la fiche Ollie directement
 ```
 
 ## Travail en cours

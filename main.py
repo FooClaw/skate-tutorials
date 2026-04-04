@@ -1,4 +1,4 @@
-from tricks.ollie import afficher_fiche
+from ollie.ollie import afficher_fiche
 
 
 def main():
