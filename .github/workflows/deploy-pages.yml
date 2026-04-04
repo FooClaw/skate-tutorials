@@ -1,0 +1,47 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  generate-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Generate SVG illustrations
+        run: uv run python -m ollie.illustrations
+
+      - name: Prepare site
+        run: |
+          mkdir -p _site
+          cp docs/index.html _site/
+          cp -r ollie/assets _site/assets
+
+      - name: Fix asset paths in HTML
+        run: sed -i 's|\.\./ollie/assets/|assets/|g' _site/index.html
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
