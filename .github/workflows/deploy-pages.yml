@@ -25,17 +25,31 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v4
 
-      - name: Generate SVG illustrations
+      - name: Generate Ollie SVG illustrations
+        if: hashFiles('ollie/illustrations.py') != ''
         run: uv run python -m ollie.illustrations
+
+      - name: Generate Manual SVG illustrations
+        if: hashFiles('manual/illustrations.py') != ''
+        run: uv run python -m manual.illustrations
 
       - name: Prepare site
         run: |
           mkdir -p _site
-          cp docs/index.html _site/
-          cp -r ollie/assets _site/assets
+          cp docs/*.html _site/
+          if [ -d ollie/assets ]; then
+            mkdir -p _site/ollie-assets
+            cp -r ollie/assets/* _site/ollie-assets/
+          fi
+          if [ -d manual/assets ]; then
+            mkdir -p _site/manual-assets
+            cp -r manual/assets/* _site/manual-assets/
+          fi
 
       - name: Fix asset paths in HTML
-        run: sed -i 's|\.\./ollie/assets/|assets/|g' _site/index.html
+        run: |
+          sed -i 's|\.\./ollie/assets/|ollie-assets/|g' _site/*.html
+          sed -i 's|\.\./manual/assets/|manual-assets/|g' _site/*.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
