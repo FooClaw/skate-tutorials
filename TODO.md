@@ -14,7 +14,7 @@
 - [ ] Tre Flip (360 Flip)
 
 ## Shuvits
-- [ ] Pop Shuvit
+- [x] Pop Shuvit
 - [ ] Frontside Pop Shuvit
 - [ ] 360 Shuvit
 
